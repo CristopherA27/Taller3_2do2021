@@ -30,24 +30,22 @@ public class SystemImpl implements SystemI{
 	}
 
 	@Override
-	public boolean ingresarAsociarDocumento(String codigoEntrega, String rutRemitente, String rutDestinatario, int peso,
-			int grosor) {
-		// TODO Auto-generated method stub
-		return false;
+	public void ingresarDocumento(String codigoEntrega, String rutRemitente, String rutDestinatario, int peso,int grosor) {
+		Entrega e = new Documento(codigoEntrega, rutRemitente, rutDestinatario, peso, grosor);
+		lentregas.ingresar(e);
+
 	}
 
 	@Override
-	public boolean ingresarAsociarEncomienda(String codigoEntrega, String rutRemitente, String rutDestinatario,
-			int peso, int largo, int ancho, int profundidad) {
-		// TODO Auto-generated method stub
-		return false;
+	public void ingresarEncomienda(String codigoEntrega, String rutRemitente, String rutDestinatario,int peso, int largo, int ancho, int profundidad) {
+		Entrega e = new Encomienda(codigoEntrega, rutRemitente, rutDestinatario, peso, largo, ancho, profundidad);
+		lentregas.ingresar(e);
 	}
 
 	@Override
-	public boolean ingresarAsociarValija(String codigoEntrega, String rutRemitente, String rutDestinatario,
-			String material, int peso) {
-		// TODO Auto-generated method stub
-		return false;
+	public void ingresarValija(String codigoEntrega, String rutRemitente, String rutDestinatario,String material, int peso) {
+		Entrega e = new Valija(codigoEntrega, rutRemitente, rutDestinatario, material, peso);
+		lentregas.ingresar(e);
 	}
 
 	
