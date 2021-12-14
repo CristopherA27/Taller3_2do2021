@@ -5,13 +5,20 @@ public class ListaDobleNexoCircular {
 	private NodoD first;
 	private int size;
 
-	public ListaDobleNexoCircular(NodoD first) {
+	public ListaDobleNexoCircular() {
 		this.first = null;
 		size =0;
 	}
 	
 	public int size() {
 		return size;
+	}
+	
+	public boolean isEmpty() {
+		if(first == null) {
+			return true;
+		}
+		return false;
 	}
 	
 	public void ingresar(Entrega entrega) {
@@ -30,12 +37,18 @@ public class ListaDobleNexoCircular {
 		size++;
 	}
 	
-	public void buscar(Entrega entrega){
+	public Entrega buscar(String codigoEntrega ){
 		NodoD current = first;
 		do {
-			
+			if(current.getEntrega().getCodigoEntrega().equals(codigoEntrega)) {
+				return current.getEntrega();
+			}
+			current = current.getNext();
 		}while(current!=first);
+		return null;
 	}
+	
+	
 	
 	
 	
