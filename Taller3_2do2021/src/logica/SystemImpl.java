@@ -44,7 +44,6 @@ public class SystemImpl implements SystemI{
 		}
 
 	}
-
 	@Override
 	public void ingresarAsociarEncomienda(String codigoEntrega, String rutRemitente, String rutDestinatario,int peso, int largo, int ancho, int profundidad) {
 		Entrega e = new Encomienda(codigoEntrega, rutRemitente, rutDestinatario, peso, largo, ancho, profundidad);
@@ -60,7 +59,6 @@ public class SystemImpl implements SystemI{
 		}
 		
 	}
-
 	@Override
 	public void ingresarAsociarValija(String codigoEntrega, String rutRemitente, String rutDestinatario,String material, int peso) {
 		Entrega e = new Valija(codigoEntrega, rutRemitente, rutDestinatario, material, peso);
@@ -75,9 +73,28 @@ public class SystemImpl implements SystemI{
 			}
 		}
 	}
-	
-	
 
+	@Override
+	public boolean verificarParametro(String tipo, int peso, String material, int grosor, int largo, int ancho,int profundidad) {
+		switch (tipo) {
+		case("D"): 
+			if(peso <=1500 && grosor <=50) {
+				
+			}
+			break;
+		case("E"):
+			if(peso) {
+				
+			}
+			break;
+		case("V"):
+			break;
+		default:
+			throw new IllegalArgumentException("El tipo "+tipo+" no existe");
+		}
+		return false;
+	}
+	
 	
 	
 }

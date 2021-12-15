@@ -45,17 +45,27 @@ public class App {
 				String rutDestinatario = partes[3];
 				int peso = Integer.parseInt(partes[4]);
 				int gromor = Integer.parseInt(partes[5]);
-				
+				system.ingresarAsociarDocumento(codigoEntrega, rutRemmitente, rutDestinatario, peso, gromor);
 				break;
 			case("V"):
+				rutRemmitente = partes[2];
+				rutDestinatario = partes[3];
+				String material  = partes[4];
+				peso = Integer.parseInt(partes[5]);
 				break;
 			case("E"):
+				rutRemmitente = partes[2];
+				rutDestinatario = partes[3];
+				peso = Integer.parseInt(partes[4]);
+			    int largo = Integer.parseInt(partes[5]);
+			    int ancho = Integer.parseInt(partes[6]);
+			    int profundidad = Integer.parseInt(partes[6]);
 				break;
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + tipo);
 			}
-			
 		}
+		s.close();
 	}
 	
 	
