@@ -48,6 +48,19 @@ public class ListaDobleNexoCircular {
 		return null;
 	}
 	
+	public Entrega getElemento(int posicion) {
+		NodoD current = first;
+		int posCurrent =0;
+		do {
+			if(posCurrent == posicion) {
+				return current.getEntrega();
+			}
+			posCurrent++;
+			current = current.getNext();
+		}while(current!=first);
+		return null;
+	}
+	
 	
 	
 	

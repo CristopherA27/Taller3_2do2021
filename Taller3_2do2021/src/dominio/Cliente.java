@@ -1,11 +1,14 @@
 package dominio;
 
+import logica.ListaDobleNexoCircular;
+
 public class Cliente {
 	private String rut;
 	private String nombre;
 	private String apellido;
 	private int saldo;
 	private String ciudadOrigen;
+	private ListaDobleNexoCircular lentregas;
 	
 	public Cliente(String rut, String nombre, String apellido, int saldo, String ciudadOrigen) {
 		this.rut = rut;
@@ -13,6 +16,7 @@ public class Cliente {
 		this.apellido = apellido;
 		this.saldo = saldo;
 		this.ciudadOrigen = ciudadOrigen;
+		lentregas = new ListaDobleNexoCircular();
 	}
 
 	public String getRut() {
@@ -54,5 +58,9 @@ public class Cliente {
 	public void setCiudadOrigen(String ciudadOrigen) {
 		this.ciudadOrigen = ciudadOrigen;
 	}
+
+	public ListaDobleNexoCircular getLentregas() {
+		return lentregas;
+	}	
 
 }

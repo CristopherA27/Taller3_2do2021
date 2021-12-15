@@ -30,23 +30,53 @@ public class SystemImpl implements SystemI{
 	}
 
 	@Override
-	public void ingresarDocumento(String codigoEntrega, String rutRemitente, String rutDestinatario, int peso,int grosor) {
+	public void ingresarAsociarDocumento(String codigoEntrega, String rutRemitente, String rutDestinatario, int peso,int grosor) {
 		Entrega e = new Documento(codigoEntrega, rutRemitente, rutDestinatario, peso, grosor);
 		lentregas.ingresar(e);
+		String rutRe = e.getRutRemitente();
+		String rutDe = e.getRutDestinatario();
+		for(int j=0;j<lclientes.size();j++) {
+			String rutpersona = lclientes.get(j).getRut();	
+			if(rutRe.equals(rutpersona) || rutDe.equals(rutpersona)) {
+				Cliente c =lclientes.get(j);
+				c.getLentregas().ingresar(e);
+			}
+		}
 
 	}
 
 	@Override
-	public void ingresarEncomienda(String codigoEntrega, String rutRemitente, String rutDestinatario,int peso, int largo, int ancho, int profundidad) {
+	public void ingresarAsociarEncomienda(String codigoEntrega, String rutRemitente, String rutDestinatario,int peso, int largo, int ancho, int profundidad) {
 		Entrega e = new Encomienda(codigoEntrega, rutRemitente, rutDestinatario, peso, largo, ancho, profundidad);
 		lentregas.ingresar(e);
+		String rutRe = e.getRutRemitente();
+		String rutDe = e.getRutDestinatario();
+		for(int j=0;j<lclientes.size();j++) {
+			String rutpersona = lclientes.get(j).getRut();	
+			if(rutRe.equals(rutpersona) || rutDe.equals(rutpersona)) {
+				Cliente c =lclientes.get(j);
+				c.getLentregas().ingresar(e);
+			}
+		}
+		
 	}
 
 	@Override
-	public void ingresarValija(String codigoEntrega, String rutRemitente, String rutDestinatario,String material, int peso) {
+	public void ingresarAsociarValija(String codigoEntrega, String rutRemitente, String rutDestinatario,String material, int peso) {
 		Entrega e = new Valija(codigoEntrega, rutRemitente, rutDestinatario, material, peso);
 		lentregas.ingresar(e);
+		String rutRe = e.getRutRemitente();
+		String rutDe = e.getRutDestinatario();
+		for(int j=0;j<lclientes.size();j++) {
+			String rutpersona = lclientes.get(j).getRut();	
+			if(rutRe.equals(rutpersona) || rutDe.equals(rutpersona)) {
+				Cliente c =lclientes.get(j);
+				c.getLentregas().ingresar(e);
+			}
+		}
 	}
+	
+	
 
 	
 	

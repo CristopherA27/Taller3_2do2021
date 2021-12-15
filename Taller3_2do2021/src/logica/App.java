@@ -45,6 +45,7 @@ public class App {
 				String rutDestinatario = partes[3];
 				int peso = Integer.parseInt(partes[4]);
 				int gromor = Integer.parseInt(partes[5]);
+				
 				break;
 			case("V"):
 				break;
