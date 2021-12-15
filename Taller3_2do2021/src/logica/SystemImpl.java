@@ -37,12 +37,11 @@ public class SystemImpl implements SystemI{
 		String rutDe = e.getRutDestinatario();
 		for(int j=0;j<lclientes.size();j++) {
 			String rutpersona = lclientes.get(j).getRut();	
-			if(rutRe.equals(rutpersona) || rutDe.equals(rutpersona)) {
+			if(rutpersona.equals(rutRe) || rutpersona.equals(rutDe)) {
 				Cliente c =lclientes.get(j);
 				c.getLentregas().ingresar(e);
 			}
 		}
-
 	}
 	@Override
 	public void ingresarAsociarEncomienda(String codigoEntrega, String rutRemitente, String rutDestinatario,int peso, int largo, int ancho, int profundidad) {
@@ -52,7 +51,7 @@ public class SystemImpl implements SystemI{
 		String rutDe = e.getRutDestinatario();
 		for(int j=0;j<lclientes.size();j++) {
 			String rutpersona = lclientes.get(j).getRut();	
-			if(rutRe.equals(rutpersona) || rutDe.equals(rutpersona)) {
+			if(rutpersona.equals(rutRe) || rutpersona.equals(rutDe)) {
 				Cliente c =lclientes.get(j);
 				c.getLentregas().ingresar(e);
 			}
@@ -67,33 +66,56 @@ public class SystemImpl implements SystemI{
 		String rutDe = e.getRutDestinatario();
 		for(int j=0;j<lclientes.size();j++) {
 			String rutpersona = lclientes.get(j).getRut();	
-			if(rutRe.equals(rutpersona) || rutDe.equals(rutpersona)) {
+			if(rutpersona.equals(rutRe) || rutpersona.equals(rutDe)) {
 				Cliente c =lclientes.get(j);
 				c.getLentregas().ingresar(e);
 			}
 		}
 	}
-
 	@Override
 	public boolean verificarParametro(String tipo, int peso, String material, int grosor, int largo, int ancho,int profundidad) {
 		switch (tipo) {
 		case("D"): 
 			if(peso <=1500 && grosor <=50) {
-				
+				return true;
 			}
 			break;
 		case("E"):
-			if(peso) {
-				
+			if(peso<50000 && largo<120 && ancho<80 && profundidad<80) {
+				return true;
 			}
 			break;
 		case("V"):
+			
 			break;
 		default:
 			throw new IllegalArgumentException("El tipo "+tipo+" no existe");
 		}
 		return false;
 	}
+
+	@Override
+	public boolean verificarRut(String rut) {
+		for(int i=0;i<lclientes.size();i++) {
+			Cliente c = lclientes.get(i);
+			if(c.getRut().equals(rut)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean verificarCiudad(String ciudadOrigen) {
+		for(int i=0;i<lciudades.size();i++) {
+			Ciudad c = lciudades.get(i);
+			if(c.getNombre().equals(ciudadOrigen)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	
 	
 	

@@ -22,4 +22,17 @@ public class Valija extends Entrega{
 		this.peso = peso;
 	}
 	
+	public int precioMaterial(String material) {
+		switch(material) {
+		case("Cuero"):
+			return 200;
+		case("Plastico"):
+			return 150;
+		case("Tela"):
+			return 100;
+		default:
+			throw new IllegalArgumentException("El tipo de material ingresado no existe");
+		}
+	}
+	
 }
