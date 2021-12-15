@@ -10,10 +10,10 @@ public interface SystemI {
 	
 	public boolean verificarParametro(String tipo,int peso,String material,int grosor,int largo,int ancho,int profundidad);
 	public boolean verificarRut(String rut);
-	public boolean verificarSaldo(String rut,int saldo,int montopagar);
+	public boolean verificarSaldo(String rut,int montopagar);
 	
 	public void añadirSaldo(String rut,int dinero);
 	public String obtenerEntregas(String rut);
 	
-
+	public String obtenerEntregasPorTipo();
 }

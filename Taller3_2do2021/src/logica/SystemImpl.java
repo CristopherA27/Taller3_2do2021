@@ -189,7 +189,9 @@ public class SystemImpl implements SystemI{
 		return dato;
 	}
 	
-	
+	public String obtenerEntregasPorTipo() {
+		return null;
+	}
 	
 	
 	

@@ -38,5 +38,12 @@ public class Encomienda extends Entrega {
 	public void setProfundidad(int profundidad) {
 		this.profundidad = profundidad;
 	}
+	@Override
+	public int pagar() {
+		int precioPeso = peso/1000;
+		int volumen = profundidad*largo*ancho;
+		int totalPagar = precioPeso*volumen*50;
+		return totalPagar;
+	}
 
 }

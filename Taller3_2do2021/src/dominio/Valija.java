@@ -34,5 +34,12 @@ public class Valija extends Entrega{
 			throw new IllegalArgumentException("El tipo de material ingresado no existe");
 		}
 	}
+	@Override
+	public  int pagar() {
+		int preciomaterial = precioMaterial(material);
+		int pesokg = peso/1000;
+		int pagarTotal = preciomaterial*pesokg*150;
+		return pagarTotal;
+	}
 	
 }

@@ -29,5 +29,7 @@ public abstract class Entrega {
 		this.rutDestinatario = rutDestinatario;
 	}	
 	
+	public abstract int pagar();
+	
 
 }
