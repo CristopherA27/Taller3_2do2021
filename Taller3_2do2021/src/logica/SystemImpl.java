@@ -151,7 +151,42 @@ public class SystemImpl implements SystemI{
 	
 	public String obtenerEntregas(String rut) {
 		String dato = "";
-		return null;
+		for(int i=0;i<lclientes.size();i++) {
+			Cliente c = lclientes.get(i);
+			if(c.getRut().equals(rut)) {
+				ListaDobleNexoCircular lenvios = c.getLenviados();
+				ListaDobleNexoCircular lrecibe = c.getLrecibidos();
+				dato+="Ha realizado "+lenvios.size()+"envios \n";
+				for(int j=0;j<lenvios.size();i++) {
+					Entrega e = lenvios.getElemento(i);
+					if(e instanceof Documento) {
+						Documento d = (Documento)e;
+						dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getPeso()+","+d.getGrosor()+"\n";
+					}else if(e instanceof Encomienda) {
+						Encomienda en = (Encomienda)e;
+						dato+="\tEncomienda: "+en.getCodigoEntrega()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"\n";
+					}else if(e instanceof Valija) {
+						Valija v = (Valija)e;
+						dato+="\tValija: "+v.getCodigoEntrega()+","+v.getMaterial()+","+v.getPeso()+"\n";
+					}
+				}
+				dato+="Ha recibido"+lrecibe.size()+"\n";
+				for(int k=0;k<lrecibe.size();k++) {
+					Entrega e = lenvios.getElemento(i);
+					if(e instanceof Documento) {
+						Documento d = (Documento)e;
+						dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getPeso()+","+d.getGrosor()+"\n";
+					}else if(e instanceof Encomienda) {
+						Encomienda en = (Encomienda)e;
+						dato+="\tEncomienda: "+en.getCodigoEntrega()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"\n";
+					}else if(e instanceof Valija) {
+						Valija v = (Valija)e;
+						dato+="\tValija: "+v.getCodigoEntrega()+","+v.getMaterial()+","+v.getPeso()+"\n";
+					}
+				}
+			}
+		}
+		return dato;
 	}
 	
 	
