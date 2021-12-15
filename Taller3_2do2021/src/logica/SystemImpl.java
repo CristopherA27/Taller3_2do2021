@@ -40,8 +40,26 @@ public class SystemImpl implements SystemI{
 			String rutpersona = c.getRut();
 			if(rutpersona.equals(rutRe) ) {
 				c.getLenviados().ingresar(e);
+				boolean existeciudad = verificarCiudad(c.getCiudadOrigen());
+				if(existeciudad) {
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+						}
+					}
+				}
 			}else if(rutpersona.equals(rutDe)) {
 				c.getLrecibidos().ingresar(e);
+				boolean existeciudad = verificarCiudad(c.getCiudadOrigen());
+				if(existeciudad) {
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantRecibidos(ciu.getCantRecibidos()+1);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -56,8 +74,26 @@ public class SystemImpl implements SystemI{
 			String rutpersona = c.getRut();
 			if(rutpersona.equals(rutRe) ) {
 				c.getLenviados().ingresar(e);
+				boolean existeciudad = verificarCiudad(c.getCiudadOrigen());
+				if(existeciudad) {
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+						}
+					}
+				}
 			}else if(rutpersona.equals(rutDe)) {
 				c.getLrecibidos().ingresar(e);
+				boolean existeciudad = verificarCiudad(c.getCiudadOrigen());
+				if(existeciudad) {
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantRecibidos(ciu.getCantRecibidos()+1);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -72,8 +108,26 @@ public class SystemImpl implements SystemI{
 			String rutpersona = c.getRut();
 			if(rutpersona.equals(rutRe) ) {
 				c.getLenviados().ingresar(e);
+				boolean existeciudad = verificarCiudad(c.getCiudadOrigen());
+				if(existeciudad) {
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+						}
+					}
+				}
 			}else if(rutpersona.equals(rutDe)) {
 				c.getLrecibidos().ingresar(e);
+				boolean existeciudad = verificarCiudad(c.getCiudadOrigen());
+				if(existeciudad) {
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantRecibidos(ciu.getCantRecibidos()+1);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -207,6 +261,24 @@ public class SystemImpl implements SystemI{
 		}
 		return dato;
 	}
+
+	@Override
+	public String obtenerEntregasPorLocalizacion() {
+		String dato ="";
+		for(int i=0;i<lentregas.size();i++) {
+			Entrega e = lentregas.getElemento(i);
+			String rutRe = e.getRutRemitente();
+			for(int j=0;j<lclientes.size();j++) {
+				Cliente c = lclientes.get(i);
+				if(rutRe.equals(c.getRut())) {
+					
+				}
+			}
+		}
+		return null;
+	}
+	
+	
 	
 	
 	

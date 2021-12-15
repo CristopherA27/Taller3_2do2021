@@ -16,4 +16,7 @@ public interface SystemI {
 	public String obtenerEntregas(String rut);
 	
 	public String obtenerEntregasPorTipo();
+	
+	public String obtenerEntregasPorLocalizacion();
+	
 }
