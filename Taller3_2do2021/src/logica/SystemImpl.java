@@ -86,10 +86,13 @@ public class SystemImpl implements SystemI{
 			}
 			break;
 		case("V"):
-			
+			if(peso <2000) {
+				return true;
+			}
 			break;
 		default:
 			throw new IllegalArgumentException("El tipo "+tipo+" no existe");
+			
 		}
 		return false;
 	}
@@ -114,6 +117,24 @@ public class SystemImpl implements SystemI{
 		}
 		return false;
 	}
+	
+	public boolean verificarSaldo(String rut,int montopagar) {
+		for(int i=0;i<lclientes.size();i++) {
+			if(lclientes.get(i).getRut().equals(rut)) {
+				Cliente c= lclientes.get(i);
+				int saldo= c.getSaldo();
+				if(saldo>montopagar) {
+					c.setSaldo(saldo-montopagar);
+					return true;
+				}else {
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+	
+	
 	
 	
 	

@@ -10,6 +10,8 @@ public interface SystemI {
 	
 	public boolean verificarParametro(String tipo,int peso,String material,int grosor,int largo,int ancho,int profundidad);
 	public boolean verificarRut(String rut);
+	public boolean verificarSaldo(String rut,int saldo,int montopagar);
+	
 
 	
 
