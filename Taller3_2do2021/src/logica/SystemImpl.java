@@ -279,7 +279,7 @@ public class SystemImpl implements SystemI{
 			dato +="Cliente "+c.getNombre()+"....Entregas: "+"\n";
 			ListaDobleNexoCircular le = c.getLenviados();
 			for(int a=0;a<le.size();a++) {
-				Entrega e = lentregas.getElemento(i);
+				Entrega e = le.getElemento(i);
 				if(e instanceof Documento) {
 					Documento d = (Documento)e;
 					dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getRutRemitente()+","+d.getRutDestinatario()+","+d.getPeso()+","+d.getGrosor()+"..Pagar: "+d.pagar()+"\n";
