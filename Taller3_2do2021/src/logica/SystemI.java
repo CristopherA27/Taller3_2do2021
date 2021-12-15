@@ -12,7 +12,8 @@ public interface SystemI {
 	public boolean verificarRut(String rut);
 	public boolean verificarSaldo(String rut,int saldo,int montopagar);
 	
-
+	public void añadirSaldo(String rut,int dinero);
+	public String obtenerEntregas(String rut);
 	
 
 }

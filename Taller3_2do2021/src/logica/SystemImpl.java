@@ -36,10 +36,12 @@ public class SystemImpl implements SystemI{
 		String rutRe = e.getRutRemitente();
 		String rutDe = e.getRutDestinatario();
 		for(int j=0;j<lclientes.size();j++) {
-			String rutpersona = lclientes.get(j).getRut();	
-			if(rutpersona.equals(rutRe) || rutpersona.equals(rutDe)) {
-				Cliente c =lclientes.get(j);
-				c.getLentregas().ingresar(e);
+			Cliente c =lclientes.get(j);
+			String rutpersona = c.getRut();
+			if(rutpersona.equals(rutRe) ) {
+				c.getLenviados().ingresar(e);
+			}else if(rutpersona.equals(rutDe)) {
+				c.getLrecibidos().ingresar(e);
 			}
 		}
 	}
@@ -50,13 +52,14 @@ public class SystemImpl implements SystemI{
 		String rutRe = e.getRutRemitente();
 		String rutDe = e.getRutDestinatario();
 		for(int j=0;j<lclientes.size();j++) {
-			String rutpersona = lclientes.get(j).getRut();	
-			if(rutpersona.equals(rutRe) || rutpersona.equals(rutDe)) {
-				Cliente c =lclientes.get(j);
-				c.getLentregas().ingresar(e);
+			Cliente c =lclientes.get(j);
+			String rutpersona = c.getRut();
+			if(rutpersona.equals(rutRe) ) {
+				c.getLenviados().ingresar(e);
+			}else if(rutpersona.equals(rutDe)) {
+				c.getLrecibidos().ingresar(e);
 			}
 		}
-		
 	}
 	@Override
 	public void ingresarAsociarValija(String codigoEntrega, String rutRemitente, String rutDestinatario,String material, int peso) {
@@ -65,10 +68,12 @@ public class SystemImpl implements SystemI{
 		String rutRe = e.getRutRemitente();
 		String rutDe = e.getRutDestinatario();
 		for(int j=0;j<lclientes.size();j++) {
-			String rutpersona = lclientes.get(j).getRut();	
-			if(rutpersona.equals(rutRe) || rutpersona.equals(rutDe)) {
-				Cliente c =lclientes.get(j);
-				c.getLentregas().ingresar(e);
+			Cliente c =lclientes.get(j);
+			String rutpersona = c.getRut();
+			if(rutpersona.equals(rutRe) ) {
+				c.getLenviados().ingresar(e);
+			}else if(rutpersona.equals(rutDe)) {
+				c.getLrecibidos().ingresar(e);
 			}
 		}
 	}
@@ -132,6 +137,21 @@ public class SystemImpl implements SystemI{
 			}
 		}
 		return false;
+	}
+	
+	public void añadirSaldo(String rut,int dinero) {
+		for(int i=0;i<lclientes.size();i++) {
+			Cliente c = lclientes.get(i);
+			if(c.getRut().equals(rut)) {
+				c.setSaldo(c.getSaldo()+dinero);
+				break;
+			}
+		}
+	}
+	
+	public String obtenerEntregas(String rut) {
+		String dato = "";
+		return null;
 	}
 	
 	

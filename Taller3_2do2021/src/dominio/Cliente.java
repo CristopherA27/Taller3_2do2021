@@ -8,7 +8,8 @@ public class Cliente {
 	private String apellido;
 	private int saldo;
 	private String ciudadOrigen;
-	private ListaDobleNexoCircular lentregas;
+	private ListaDobleNexoCircular lenviados;
+	private ListaDobleNexoCircular lrecibidos;
 	
 	public Cliente(String rut, String nombre, String apellido, int saldo, String ciudadOrigen) {
 		this.rut = rut;
@@ -16,9 +17,10 @@ public class Cliente {
 		this.apellido = apellido;
 		this.saldo = saldo;
 		this.ciudadOrigen = ciudadOrigen;
-		lentregas = new ListaDobleNexoCircular();
+		lenviados = new ListaDobleNexoCircular();
+		lrecibidos = new ListaDobleNexoCircular();
 	}
-
+	
 	public String getRut() {
 		return rut;
 	}
@@ -59,8 +61,14 @@ public class Cliente {
 		this.ciudadOrigen = ciudadOrigen;
 	}
 
-	public ListaDobleNexoCircular getLentregas() {
-		return lentregas;
-	}	
+	public ListaDobleNexoCircular getLenviados() {
+		return lenviados;
+	}
+
+	public ListaDobleNexoCircular getLrecibidos() {
+		return lrecibidos;
+	}
+
+
 
 }
