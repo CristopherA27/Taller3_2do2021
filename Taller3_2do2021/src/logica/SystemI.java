@@ -19,4 +19,6 @@ public interface SystemI {
 	
 	public String obtenerEntregasPorLocalizacion();
 	
+	public String obtenerEntregasPorCliente();
+	
 }

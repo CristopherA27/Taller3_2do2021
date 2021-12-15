@@ -265,19 +265,36 @@ public class SystemImpl implements SystemI{
 	@Override
 	public String obtenerEntregasPorLocalizacion() {
 		String dato ="";
-		for(int i=0;i<lentregas.size();i++) {
-			Entrega e = lentregas.getElemento(i);
-			String rutRe = e.getRutRemitente();
-			for(int j=0;j<lclientes.size();j++) {
-				Cliente c = lclientes.get(i);
-				if(rutRe.equals(c.getRut())) {
-					
-				}
-			}
+		for(int i=0;i<lciudades.size();i++) {
+			Ciudad c = lciudades.get(i);
+			dato+="\t"+c.getNombre()+" realizo "+c.getCantEnvios()+" envios y recibio "+c.getCantRecibidos()+"\n";
 		}
-		return null;
+		return dato;
 	}
 	
+	public String obtenerEntregasPorCliente() {
+		String dato ="";
+		for(int i=0;i<lclientes.size();i++) {
+			Cliente c = lclientes.get(i);
+			dato +="Cliente "+c.getNombre()+"....Entregas: "+"\n";
+			ListaDobleNexoCircular le = c.getLenviados();
+			for(int a=0;a<le.size();a++) {
+				Entrega e = lentregas.getElemento(i);
+				if(e instanceof Documento) {
+					Documento d = (Documento)e;
+					dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getRutRemitente()+","+d.getRutDestinatario()+","+d.getPeso()+","+d.getGrosor()+"..Pagar: "+d.pagar()+"\n";
+				}else if(e instanceof Encomienda) {
+					Encomienda en = (Encomienda)e;
+					dato+="\tEncomienda: "+en.getCodigoEntrega()+","+en.getRutRemitente()+","+en.getRutDestinatario()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"..Pagar: "+en.pagar()+"\n";
+				}else if(e instanceof Valija) {
+					Valija v = (Valija)e;
+					dato+="\tValija: "+v.getCodigoEntrega()+","+v.getRutRemitente()+","+v.getRutDestinatario()+","+v.getMaterial()+","+v.getPeso()+"..Pagar: "+v.pagar()+"\n";
+				}
+			}
+			
+		}
+		return dato;
+	}
 	
 	
 	
