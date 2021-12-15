@@ -190,7 +190,22 @@ public class SystemImpl implements SystemI{
 	}
 	
 	public String obtenerEntregasPorTipo() {
-		return null;
+		String dato ="";
+		for(int i=0;i<lentregas.size();i++) {
+			Entrega e = lentregas.getElemento(i);
+			if(e instanceof Documento) {
+				Documento d = (Documento)e;
+				dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getRutRemitente()+","+d.getRutDestinatario()+","+d.getPeso()+","+d.getGrosor()+"..Pagar: "+d.pagar()+"\n";
+			}else if(e instanceof Encomienda) {
+				Encomienda en = (Encomienda)e;
+				dato+="\tEncomienda: "+en.getCodigoEntrega()+","+en.getRutRemitente()+","+en.getRutDestinatario()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"..Pagar: "+en.pagar()+"\n";
+			}else if(e instanceof Valija) {
+				Valija v = (Valija)e;
+				dato+="\tValija: "+v.getCodigoEntrega()+","+v.getRutRemitente()+","+v.getRutDestinatario()+","+v.getMaterial()+","+v.getPeso()+"..Pagar: "+v.pagar()+"\n";
+			}
+			
+		}
+		return dato;
 	}
 	
 	
