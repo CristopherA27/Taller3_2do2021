@@ -74,7 +74,10 @@ public class App {
 
 	public static void main(String[] args) {
 		SystemI system = new SystemImpl();
-
+		
+		
 	}
+	
+	public static Scanner leer = new Scanner(System.in);
 
 }

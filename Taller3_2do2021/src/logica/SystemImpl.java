@@ -46,6 +46,7 @@ public class SystemImpl implements SystemI{
 						Ciudad ciu = lciudades.get(a);
 						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
 							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+							ciu.setGanancias(ciu.getGanancias()+e.pagar());
 						}
 					}
 				}
@@ -57,6 +58,7 @@ public class SystemImpl implements SystemI{
 						Ciudad ciu = lciudades.get(a);
 						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
 							ciu.setCantRecibidos(ciu.getCantRecibidos()+1);
+							
 						}
 					}
 				}
@@ -80,6 +82,7 @@ public class SystemImpl implements SystemI{
 						Ciudad ciu = lciudades.get(a);
 						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
 							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+							ciu.setGanancias(ciu.getGanancias()+e.pagar());
 						}
 					}
 				}
@@ -114,6 +117,7 @@ public class SystemImpl implements SystemI{
 						Ciudad ciu = lciudades.get(a);
 						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
 							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+							ciu.setGanancias(ciu.getGanancias()+e.pagar());
 						}
 					}
 				}
@@ -184,7 +188,12 @@ public class SystemImpl implements SystemI{
 				int saldo= c.getSaldo();
 				if(saldo>montopagar) {
 					c.setSaldo(saldo-montopagar);
-					return true;
+					for(int j=0;j<lciudades.size();j++) {
+						if(lciudades.get(i).getNombre().equals(c.getCiudadOrigen())) {
+							lciudades.get(i).setGanancias(lciudades.get(i).getGanancias()+montopagar);
+							return true;
+						}
+					}
 				}else {
 					return false;
 				}
@@ -291,10 +300,11 @@ public class SystemImpl implements SystemI{
 					dato+="\tValija: "+v.getCodigoEntrega()+","+v.getRutRemitente()+","+v.getRutDestinatario()+","+v.getMaterial()+","+v.getPeso()+"..Pagar: "+v.pagar()+"\n";
 				}
 			}
-			
 		}
 		return dato;
 	}
+	
+	
 	
 	
 	
