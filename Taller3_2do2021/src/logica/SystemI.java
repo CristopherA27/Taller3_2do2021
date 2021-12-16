@@ -17,6 +17,8 @@ public interface SystemI {
 	
 	public String obtenerEntregasPorTipo();
 	
+	public int obtenerPrecio(String tipo,int peso, String material, int grosor, int largo, int ancho,int profundidad);
+	
 	public String obtenerEntregasPorLocalizacion();
 	
 	public String obtenerEntregasPorCliente();

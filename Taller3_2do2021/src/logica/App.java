@@ -72,7 +72,7 @@ public class App {
 		}
 		s.close();
 	}
-	/*
+	
 	public static boolean inicioSesion(SystemI system) {
 		System.out.println("BIENVENIDO A STARKON");
 		System.out.println();
@@ -109,47 +109,62 @@ public class App {
 					leer.nextLine();
 					System.out.print("Ciudad Origen: "); String origenCiudad = leer.nextLine();
 					system.ingresarCliente(rut, nombre, apellido, saldo, origenCiudad);
-					if(ingresado) {
-						System.out.println("Region: "); String region = leer.nextLine();
-						boolean ingresoRegion = system.asignarRegion(nombreCuenta, region);
-						if(ingresoRegion) {
-							System.out.println("Cuenta ingresada con exito");
-						}else {
-							System.out.println("No se pudo ingresar la cuenta");
-						}
-					}else {
-						System.out.println("Error al ingresar la cuenta, No queda espacio suficiente");
-		
-					}
-					return false;
+					return true;
 				}else {
-					System.out.println("Usted no ingreso la cuenta");
+					System.out.println("Usted no ingresara la cuenta");
 					return false;
 				}	
 			}
 			
 		}
 
-	}*/
+	}
 	
+
+	private static void menuAdmin(SystemI system) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void menuUsuario(SystemI system, String rut) {
+		boolean cierre = true;
+		System.out.println("Bienvenido Menu Usuario:");
+		System.out.println();
+		while(cierre) {
+			System.out.println("Estas son las opciones: ");
+			System.out.println("\tA)Realizar Entrega:");
+		}
+		
+		
+	}
 
 	public static void main(String[] args) throws FileNotFoundException {
 		SystemI system = new SystemImpl();
 		leerCiudades(system);
 		leerClientes(system);
 		leerEntregas(system);
-		/*System.out.println("Ingrese el tipo de entrega: ");
-		String resp = l.nextLine();
+		System.out.print("Ingrese el tipo de entrega: ");
+		String resp = leer.nextLine();
 		if(resp.equals("D")) {
-			int peso = l.nextInt();
-			int grosor = l.nextInt();
+			int peso = leer.nextInt();
+			int grosor = leer.nextInt();
 			boolean serealizara = system.verificarParametro(resp, peso, null, grosor, 0, 0, 0);
+			leer.nextLine();
 			if(serealizara) {
+				System.out.print("rutRe");
+				String rutRemitente = leer.nextLine();
+				System.out.print("rutDe");
+				String rutDestinatario = leer.nextLine();
+				boolean  verificar = system.verificarRut(rutDestinatario);
+				if(verificar) {
+					int precio = system.obtenerPrecio(resp, peso, null, grosor, null, null, null);
+				}
 				
 			}
 			
-		}*/
-		System.out.println(system.obtenerGananciasOficinas());
+		}
+		String rut = "12345678";
+		System.out.println(system.obtenerEntregas(rut));
 	}
 	
 	public static Scanner leer = new Scanner(System.in);

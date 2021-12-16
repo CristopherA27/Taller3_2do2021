@@ -202,6 +202,27 @@ public class SystemImpl implements SystemI{
 		return false;
 	}
 	
+	public int obtenerPrecio(String tipo,int peso, String material, int grosor, int largo, int ancho,int profundidad) {
+		switch (tipo) {
+		case("D"):
+			Entrega e = new Documento(null, null, null, peso, grosor);
+			int precio = e.pagar();
+			return precio;
+		case("E"):
+			Entrega en = new Encomienda(null, null, null, peso, largo, ancho, profundidad);
+			precio = en.pagar();
+			return precio;
+		case("V"):
+			Entrega v = new Valija(null, null, null, material, peso);
+			precio = v.pagar();
+			return precio;
+		default:
+			break;
+		}
+		return 0;
+	}
+	
+	
 	public void añadirSaldo(String rut,int dinero) {
 		for(int i=0;i<lclientes.size();i++) {
 			Cliente c = lclientes.get(i);
@@ -219,32 +240,32 @@ public class SystemImpl implements SystemI{
 			if(c.getRut().equals(rut)) {
 				ListaDobleNexoCircular lenvios = c.getLenviados();
 				ListaDobleNexoCircular lrecibe = c.getLrecibidos();
-				dato+="Ha realizado "+lenvios.size()+"envios \n";
-				for(int j=0;j<lenvios.size();i++) {
-					Entrega e = lenvios.getElemento(i);
+				dato+="Ha realizado "+lenvios.size()+" envio(s) \n";
+				for(int j=0;j<lenvios.size();j++) {
+					Entrega e = lenvios.getElemento(j);
 					if(e instanceof Documento) {
 						Documento d = (Documento)e;
-						dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getPeso()+","+d.getGrosor()+"\n";
+						dato+="\tDocumento: Codigo:"+d.getCodigoEntrega()+",Peso:"+d.getPeso()+",Grosor:"+d.getGrosor()+"\n";
 					}else if(e instanceof Encomienda) {
 						Encomienda en = (Encomienda)e;
-						dato+="\tEncomienda: "+en.getCodigoEntrega()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"\n";
+						dato+="\tEncomienda: Codigo:"+en.getCodigoEntrega()+",Peso:"+en.getPeso()+",Largo:"+en.getLargo()+",Ancho:"+en.getAncho()+",Profundidad:"+en.getProfundidad()+"\n";
 					}else if(e instanceof Valija) {
 						Valija v = (Valija)e;
-						dato+="\tValija: "+v.getCodigoEntrega()+","+v.getMaterial()+","+v.getPeso()+"\n";
+						dato+="\tValija: Codigo:"+v.getCodigoEntrega()+",Material:"+v.getMaterial()+",Peso:"+v.getPeso()+"\n";
 					}
 				}
-				dato+="Ha recibido"+lrecibe.size()+"\n";
+				dato+="Ha recibido "+lrecibe.size()+"\n";
 				for(int k=0;k<lrecibe.size();k++) {
-					Entrega e = lenvios.getElemento(i);
+					Entrega e = lrecibe.getElemento(k);
 					if(e instanceof Documento) {
 						Documento d = (Documento)e;
-						dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getPeso()+","+d.getGrosor()+"\n";
+						dato+="\tDocumento: Codigo:"+d.getCodigoEntrega()+",Peso:"+d.getPeso()+",Grosor:"+d.getGrosor()+"\n";
 					}else if(e instanceof Encomienda) {
 						Encomienda en = (Encomienda)e;
-						dato+="\tEncomienda: "+en.getCodigoEntrega()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"\n";
+						dato+="\tEncomienda: Codigo:"+en.getCodigoEntrega()+",Peso:"+en.getPeso()+",Largo:"+en.getLargo()+",Ancho:"+en.getAncho()+",Profundidad:"+en.getProfundidad()+"\n";
 					}else if(e instanceof Valija) {
 						Valija v = (Valija)e;
-						dato+="\tValija: "+v.getCodigoEntrega()+","+v.getMaterial()+","+v.getPeso()+"\n";
+						dato+="\tValija: Codigo:"+v.getCodigoEntrega()+",Material:"+v.getMaterial()+",Peso:"+v.getPeso()+"\n";
 					}
 				}
 			}
@@ -258,13 +279,13 @@ public class SystemImpl implements SystemI{
 			Entrega e = lentregas.getElemento(i);
 			if(e instanceof Documento) {
 				Documento d = (Documento)e;
-				dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getRutRemitente()+","+d.getRutDestinatario()+","+d.getPeso()+","+d.getGrosor()+"..Pagar: "+d.pagar()+"\n";
+				dato+="\tDocumento: Codigo:"+d.getCodigoEntrega()+",RutRemitente:"+d.getRutRemitente()+",RutDestinatario"+d.getRutDestinatario()+",Peso:"+d.getPeso()+",Grosor:"+d.getGrosor()+"		Pagar: "+d.pagar()+"clp\n";
 			}else if(e instanceof Encomienda) {
 				Encomienda en = (Encomienda)e;
-				dato+="\tEncomienda: "+en.getCodigoEntrega()+","+en.getRutRemitente()+","+en.getRutDestinatario()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"..Pagar: "+en.pagar()+"\n";
+				dato+="\tEncomienda: Codigo:"+en.getCodigoEntrega()+",RutRemitente:"+en.getRutRemitente()+",RutDestinatario"+en.getRutDestinatario()+",Peso:"+en.getPeso()+",Largo:"+en.getLargo()+",Ancho:"+en.getAncho()+",Profundidad:"+en.getProfundidad()+"		Pagar: "+en.pagar()+"clp\n";
 			}else if(e instanceof Valija) {
 				Valija v = (Valija)e;
-				dato+="\tValija: "+v.getCodigoEntrega()+","+v.getRutRemitente()+","+v.getRutDestinatario()+","+v.getMaterial()+","+v.getPeso()+"..Pagar: "+v.pagar()+"\n";
+				dato+="\tValija:  Codigo:"+v.getCodigoEntrega()+",RutRemitente:"+v.getRutRemitente()+",RutDestinatario"+v.getRutDestinatario()+",Material:"+v.getMaterial()+",Peso:"+v.getPeso()+"		Pagar: "+v.pagar()+"clp\n";
 			}
 			
 		}
@@ -288,16 +309,16 @@ public class SystemImpl implements SystemI{
 			dato +="Cliente "+c.getNombre()+"....Entregas: "+"\n";
 			ListaDobleNexoCircular le = c.getLenviados();
 			for(int a=0;a<le.size();a++) {
-				Entrega e = le.getElemento(i);
+				Entrega e = le.getElemento(a);
 				if(e instanceof Documento) {
 					Documento d = (Documento)e;
-					dato+="\tDocumento: "+d.getCodigoEntrega()+","+d.getRutRemitente()+","+d.getRutDestinatario()+","+d.getPeso()+","+d.getGrosor()+"..Pagar: "+d.pagar()+"\n";
+					dato+="\tDocumento: Codigo:"+d.getCodigoEntrega()+",RutRemitente:"+d.getRutRemitente()+",RutDestinatario"+d.getRutDestinatario()+",Peso:"+d.getPeso()+",Grosor:"+d.getGrosor()+"\n";
 				}else if(e instanceof Encomienda) {
 					Encomienda en = (Encomienda)e;
-					dato+="\tEncomienda: "+en.getCodigoEntrega()+","+en.getRutRemitente()+","+en.getRutDestinatario()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"..Pagar: "+en.pagar()+"\n";
+					dato+="\tEncomienda: Codigo:"+en.getCodigoEntrega()+",RutRemitente:"+en.getRutRemitente()+",RutDestinatario"+en.getRutDestinatario()+",Peso:"+en.getPeso()+",Largo:"+en.getLargo()+",Ancho:"+en.getAncho()+",Profundidad:"+en.getProfundidad()+"\n";
 				}else if(e instanceof Valija) {
 					Valija v = (Valija)e;
-					dato+="\tValija: "+v.getCodigoEntrega()+","+v.getRutRemitente()+","+v.getRutDestinatario()+","+v.getMaterial()+","+v.getPeso()+"..Pagar: "+v.pagar()+"\n";
+					dato+="\tValija:  Codigo:"+v.getCodigoEntrega()+",RutRemitente:"+v.getRutRemitente()+",RutDestinatario"+v.getRutDestinatario()+",Material:"+v.getMaterial()+",Peso:"+v.getPeso()+"\n";
 				}
 			}
 		}
