@@ -133,6 +133,46 @@ public class App {
 		while(cierre) {
 			System.out.println("Estas son las opciones: ");
 			System.out.println("\tA)Realizar Entrega:");
+			System.out.println("\tB)Recargar Saldo");
+			System.out.println("\tC)Ver mis Entregas");
+			System.out.print("Seleccione una opcion: ");
+			String opcion = leer.nextLine();
+			switch (opcion) {
+			case("A"):
+				System.out.println("Usted Realizara una entrega! ");
+				System.out.print("¿Que tipo de entrega desea realizar: ");
+				String tipoEntrega = leer.nextLine();
+				while(!tipoEntrega.equalsIgnoreCase("D") && !tipoEntrega.equalsIgnoreCase("E") && !tipoEntrega.equalsIgnoreCase("V") ) {
+					System.out.println("Ingrese (D) , (E)  o  (V)por favor.....");
+					System.out.print("¿Que tipo de entrega desea realizar: ");
+					tipoEntrega = leer.nextLine();
+				}
+				if(tipoEntrega.equalsIgnoreCase("D")) {
+					System.out.print("Ingrese el peso del Documento: ");
+					int peso = leer.nextInt();
+					System.out.print("Ingrese el grosor del Documento: ");
+					int grosor = leer.nextInt();
+					boolean verificar = system.verificarParametro(tipoEntrega, peso, null, grosor, 0, 0, 0);
+					leer.nextLine();
+					if(verificar) {
+						System.out.print("Ingrese su rut porfavor: ");
+						String rutRe = leer.nextLine();
+						System.out.print("Ingrese el rut del Destinatario: ");
+						String rutDe = leer.nextLine();
+						boolean verificarDes = system.verificarRut(rutDe);
+						if(verificarDes) {
+							int precio = system.obtenerPrecio(tipoEntrega, peso, null, grosor, 0, 0, 0);
+							boolean saldopagar = system.verificarSaldo(rutRe, precio);
+							if(saldopagar)
+						}
+						
+					}
+					
+				}
+				break;
+			default:
+				break;
+			}
 		}
 		
 		
@@ -143,7 +183,7 @@ public class App {
 		leerCiudades(system);
 		leerClientes(system);
 		leerEntregas(system);
-		System.out.print("Ingrese el tipo de entrega: ");
+		/*System.out.print("Ingrese el tipo de entrega: ");
 		String resp = leer.nextLine();
 		if(resp.equals("D")) {
 			int peso = leer.nextInt();
@@ -157,14 +197,14 @@ public class App {
 				String rutDestinatario = leer.nextLine();
 				boolean  verificar = system.verificarRut(rutDestinatario);
 				if(verificar) {
-					int precio = system.obtenerPrecio(resp, peso, null, grosor, null, null, null);
+					//int precio = system.obtenerPrecio(resp, peso, null, grosor, null, null, null);
 				}
 				
 			}
 			
-		}
+		}*/
 		String rut = "12345678";
-		System.out.println(system.obtenerEntregas(rut));
+		menuUsuario(system, rut);
 	}
 	
 	public static Scanner leer = new Scanner(System.in);
