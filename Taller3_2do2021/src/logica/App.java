@@ -163,10 +163,16 @@ public class App {
 						if(verificarDes) {
 							int precio = system.obtenerPrecio(tipoEntrega, peso, null, grosor, 0, 0, 0);
 							boolean saldopagar = system.verificarSaldo(rutRe, precio);
-							if(saldopagar)
+							if(saldopagar) {
+								
+							}
 						}
 						
 					}
+					
+				}else if(tipoEntrega.equalsIgnoreCase("E")) {
+					
+				}else if(tipoEntrega.equalsIgnoreCase("V")) {
 					
 				}
 				break;
