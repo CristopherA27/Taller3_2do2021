@@ -40,10 +40,10 @@ public class Encomienda extends Entrega {
 	}
 	@Override
 	public int pagar() {
-		int precioPeso = peso/1000;
-		int volumen = profundidad*largo*ancho;
-		int totalPagar = precioPeso*volumen*50;
-		return totalPagar;
+		double precioPeso = peso/1000.0;
+		double volumen = (profundidad/100.0*largo/100.0*ancho/100.0);
+		double totalPagar = precioPeso*volumen*50;
+		return (int)totalPagar;
 	}
 
 }

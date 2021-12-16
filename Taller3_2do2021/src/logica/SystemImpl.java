@@ -304,6 +304,27 @@ public class SystemImpl implements SystemI{
 		return dato;
 	}
 	
+	public String obtenerGananciasOficinas(){
+		String dato = "";
+		for(int i=0;i<lciudades.size();i++) {
+			Ciudad c = lciudades.get(i);
+			dato+="La ciuadd "+c.getNombre()+" recaudo "+c.getGanancias()+"\n";
+		}
+		return dato;
+	}
+	
+	public String obtenerBalanceTotal() {
+		int sumador = 0;
+		String dato = "";
+		for(int i=0;i<lciudades.size();i++) {
+			Ciudad c = lciudades.get(i);
+			sumador+=c.getGanancias();
+		}
+		dato+="\tEl balance total de todas las oficinas fue "+sumador;
+		return dato;
+	}
+	
+	
 	
 	
 	

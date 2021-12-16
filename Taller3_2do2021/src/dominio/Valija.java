@@ -37,9 +37,9 @@ public class Valija extends Entrega{
 	@Override
 	public  int pagar() {
 		int preciomaterial = precioMaterial(material);
-		int pesokg = peso/1000;
-		int pagarTotal = preciomaterial*pesokg*150;
-		return pagarTotal;
+		double pesokg = peso/1000.0;
+		double pagarTotal = preciomaterial*pesokg*150;
+		return (int)pagarTotal;
 	}
 	
 }

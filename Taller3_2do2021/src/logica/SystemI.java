@@ -20,5 +20,8 @@ public interface SystemI {
 	public String obtenerEntregasPorLocalizacion();
 	
 	public String obtenerEntregasPorCliente();
+	public String obtenerGananciasOficinas();
+	public String obtenerBalanceTotal();
+	
 	
 }
