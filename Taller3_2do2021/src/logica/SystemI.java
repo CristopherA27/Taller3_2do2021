@@ -10,6 +10,9 @@ public interface SystemI {
 	
 	public boolean verificarParametro(String tipo,int peso,String material,int grosor,int largo,int ancho,int profundidad);
 	public boolean verificarRut(String rut);
+	
+	public void realizarEntrega(String codigoEntreg,String tipo,String rutRemitente,String rutDestinatario,int peso, String material, int grosor, int largo, int ancho,int profundidad);
+	
 	public boolean verificarSaldo(String rut,int montopagar);
 	
 	public void añadirSaldo(String rut,int dinero);
@@ -24,6 +27,7 @@ public interface SystemI {
 	public String obtenerEntregasPorCliente();
 	public String obtenerGananciasOficinas();
 	public String obtenerBalanceTotal();
+	
 	
 	
 }

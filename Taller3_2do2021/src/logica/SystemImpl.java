@@ -222,6 +222,89 @@ public class SystemImpl implements SystemI{
 		return 0;
 	}
 	
+	public void realizarEntrega(String codigoEntrega,String tipo,String rutRemitente,String rutDestinatario,int peso, String material, int grosor, int largo, int ancho,int profundidad) {
+		switch (tipo) {
+		case("D"):
+			Entrega e = new Documento(codigoEntrega, rutRemitente, rutDestinatario, peso, grosor);
+			for(int i=0;i<lclientes.size();i++) {
+				Cliente c = lclientes.get(i);
+				if(c.getRut().equalsIgnoreCase(rutRemitente)) {
+					c.getLenviados().ingresar(e);
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+							ciu.setGanancias(ciu.getGanancias()+e.pagar());
+						}
+					}
+				}else if(c.getRut().equalsIgnoreCase(rutDestinatario)) {
+					c.getLrecibidos().ingresar(e);
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantRecibidos(ciu.getCantRecibidos()+1);
+						}
+					}
+				}
+			}
+			lentregas.ingresar(e);
+			break;
+		case("E"):
+			Entrega en = new Encomienda(codigoEntrega,rutRemitente, rutDestinatario, peso, largo, ancho, profundidad);
+			for(int i=0;i<lclientes.size();i++) {
+				Cliente c = lclientes.get(i);
+				if(c.getRut().equalsIgnoreCase(rutRemitente)) {
+					c.getLenviados().ingresar(en);
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+							ciu.setGanancias(ciu.getGanancias()+en.pagar());
+						}
+					}
+				}else if(c.getRut().equalsIgnoreCase(rutDestinatario)) {
+					c.getLrecibidos().ingresar(en);
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantRecibidos(ciu.getCantRecibidos()+1);
+						}
+					}
+				}
+			}
+			lentregas.ingresar(en);
+			break;
+		case("V"):
+			Entrega v = new Valija(codigoEntrega, rutRemitente, rutDestinatario, material, peso);
+			for(int i=0;i<lclientes.size();i++) {
+				Cliente c = lclientes.get(i);
+				if(c.getRut().equalsIgnoreCase(rutRemitente)) {
+					c.getLenviados().ingresar(v);
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantEnvios(ciu.getCantEnvios()+1);
+							ciu.setGanancias(ciu.getGanancias()+v.pagar());
+						}
+					}
+				}else if(c.getRut().equalsIgnoreCase(rutDestinatario)) {
+					c.getLrecibidos().ingresar(v);
+					for(int a=0;a<lciudades.size();a++) {
+						Ciudad ciu = lciudades.get(a);
+						if(ciu.getNombre().equals(c.getCiudadOrigen())) {
+							ciu.setCantRecibidos(ciu.getCantRecibidos()+1);
+						}
+					}
+				}
+			}
+			lentregas.ingresar(v);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	
 	
 	public void añadirSaldo(String rut,int dinero) {
 		for(int i=0;i<lclientes.size();i++) {
@@ -301,6 +384,7 @@ public class SystemImpl implements SystemI{
 		}
 		return dato;
 	}
+	
 	
 	public String obtenerEntregasPorCliente() {
 		String dato ="";

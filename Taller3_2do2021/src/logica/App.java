@@ -135,6 +135,7 @@ public class App {
 			System.out.println("\tA)Realizar Entrega:");
 			System.out.println("\tB)Recargar Saldo");
 			System.out.println("\tC)Ver mis Entregas");
+			System.out.println("\tD)Cerrar Sesion");
 			System.out.print("Seleccione una opcion: ");
 			String opcion = leer.nextLine();
 			switch (opcion) {
@@ -164,53 +165,120 @@ public class App {
 							int precio = system.obtenerPrecio(tipoEntrega, peso, null, grosor, 0, 0, 0);
 							boolean saldopagar = system.verificarSaldo(rutRe, precio);
 							if(saldopagar) {
-								
+								String codigo= generarCodigo();
+								system.realizarEntrega(codigo, tipoEntrega, rutRe, rutDe, peso, null, grosor, 0, 0, 0);
+								System.out.println("Entrega Realizada!");
+								break;
 							}
 						}
 						
 					}
-					
 				}else if(tipoEntrega.equalsIgnoreCase("E")) {
-					
+					System.out.print("Ingrese el peso de la Encomienda: ");
+					int peso = leer.nextInt();
+					System.out.print("Ingrese el largo:");
+					int largo = leer.nextInt();
+					System.out.print("Ingrese el ancho:");
+					int ancho = leer.nextInt();
+					System.out.print("Ingrese la profundidad: ");
+					int profundidad = leer.nextInt();
+					boolean verificar = system.verificarParametro(tipoEntrega, peso, null, 0, largo, ancho, profundidad);
+					leer.nextLine();
+					if(verificar) {
+						System.out.print("Ingrese su rut porfavor: ");
+						String rutRe = leer.nextLine();
+						System.out.print("Ingrese el rut del Destinatario: ");
+						String rutDe = leer.nextLine();
+						boolean verificarDes = system.verificarRut(rutDe);
+						if(verificarDes) {
+							int precio = system.obtenerPrecio(tipoEntrega, peso, null, 0, largo, ancho, profundidad);
+							boolean saldopagar = system.verificarSaldo(rutRe, precio);
+							if(saldopagar) {
+								String codigo= generarCodigo();
+								system.realizarEntrega(codigo, tipoEntrega, rutRe, rutDe, peso, null, 0, largo, ancho, profundidad);
+								System.out.println("Entrega Realizada!");
+								break;
+							}
+						}else {
+							System.out.println("El rut del destinatario no existe...");
+						}
+					}
 				}else if(tipoEntrega.equalsIgnoreCase("V")) {
-					
+					System.out.print("Ingrese el material de la valija");
+					String material = leer.nextLine();
+					while(!material.equalsIgnoreCase("Documento") && !material.equalsIgnoreCase("Encomienda") && !material.equalsIgnoreCase("Valija") ) {
+						System.out.println("Ingrese (Documento) , (Encomienda)  o  (Valija) por favor.....");
+						System.out.print("Ingrese el material de la valija");
+						material = leer.nextLine();
+					}
+					System.out.print("Ingresa el peso de la Valija: ");
+					int peso = leer.nextInt();
+					boolean verificar = system.verificarParametro(tipoEntrega, peso, material, 0, 0, 0, 0);
+					if(verificar) {
+						System.out.print("Ingrese su rut porfavor: ");
+						String rutRe = leer.nextLine();
+						System.out.print("Ingrese el rut del Destinatario: ");
+						String rutDe = leer.nextLine();
+						boolean verificarDes = system.verificarRut(rutDe);
+						if(verificarDes) {
+							int precio = system.obtenerPrecio(tipoEntrega, peso, material, 0, 0, 0, 0);
+							boolean saldopagar = system.verificarSaldo(rutRe, precio);
+							if(saldopagar) {
+								String codigo= generarCodigo();
+								system.realizarEntrega(codigo, tipoEntrega, rutRe, rutDe, peso, material, 0, 0, 0, 0);
+								System.out.println("Entrega Realizada!");
+								break;
+							}
+						}
+					}	
 				}
 				break;
-			default:
+			case("B"):
+				System.out.println("AÑADIR SALDO");
+				System.out.println();
+				System.out.print("Ingrese el dinero que desea agregar a su saldo");
+				int dinero = leer.nextInt();
+				system.añadirSaldo(rut, dinero);
 				break;
+			case("C"):
+				System.out.println("OBTENIENDO ENTREGAS");
+				System.out.println();
+				System.out.println(system.obtenerEntregas(rut));
+				break;
+			case("D"):
+				cierre = false;break;
+			default:
+				System.out.println("Elija A ,B o C porfavor ");break;
 			}
+			if(opcion.equalsIgnoreCase("D")) {
+	    		break;
+	    	}
 		}
-		
-		
+		System.out.println("\tSALIENDO DEL MENU USUARIO");
 	}
+	
+	public static String generarCodigo() {
+		String dato ="";
+		int codigo =0;
+		codigo = (int)(Math.random()*1000000+100000);
+		dato+=codigo;
+		return dato;
+	}
+	
 
 	public static void main(String[] args) throws FileNotFoundException {
 		SystemI system = new SystemImpl();
 		leerCiudades(system);
 		leerClientes(system);
 		leerEntregas(system);
-		/*System.out.print("Ingrese el tipo de entrega: ");
-		String resp = leer.nextLine();
-		if(resp.equals("D")) {
-			int peso = leer.nextInt();
-			int grosor = leer.nextInt();
-			boolean serealizara = system.verificarParametro(resp, peso, null, grosor, 0, 0, 0);
-			leer.nextLine();
-			if(serealizara) {
-				System.out.print("rutRe");
-				String rutRemitente = leer.nextLine();
-				System.out.print("rutDe");
-				String rutDestinatario = leer.nextLine();
-				boolean  verificar = system.verificarRut(rutDestinatario);
-				if(verificar) {
-					//int precio = system.obtenerPrecio(resp, peso, null, grosor, null, null, null);
-				}
-				
-			}
-			
-		}*/
 		String rut = "12345678";
 		menuUsuario(system, rut);
+		
+		System.out.println();
+		System.out.println(system.obtenerEntregasPorLocalizacion());
+		System.out.println();
+		System.out.println(system.obtenerGananciasOficinas());
+		//System.out.println(generarCodigo());
 	}
 	
 	public static Scanner leer = new Scanner(System.in);
