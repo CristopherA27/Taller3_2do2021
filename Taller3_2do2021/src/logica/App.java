@@ -111,7 +111,7 @@ public class App {
 					system.ingresarCliente(rut, nombre, apellido, saldo, origenCiudad);
 					return true;
 				}else {
-					System.out.println("Usted no ingresara la cuenta");
+					System.out.println("Usted no ingresara el cliente");
 					return false;
 				}	
 			}
@@ -122,10 +122,52 @@ public class App {
 	
 
 	private static void menuAdmin(SystemI system) {
-		// TODO Auto-generated method stub
+		boolean cierre = true;
+		System.out.println("Bienvenido al Menu ADMIN");
+		while(cierre) {
+			System.out.println("Estas son las opciones: ");
+			System.out.println("\tA)Desplegar entregas por tipo");
+			System.out.println("\tB)Entregas por localizacion");
+			System.out.println("\tC)Entregas por Cliente");
+			System.out.println("\tD)Registros de ganancias");
+			System.out.println("\tE)Cerrar sesion");
+			System.out.print("Seleccione una opción: ");
+	    	String opcion = leer.nextLine();
+	    	switch (opcion) {
+			case("A"):
+				System.out.println("Desplegando entregas por tipo.....");
+				System.out.println("\t"+system.obtenerEntregasPorTipo());
+				break;
+			case("B"):
+				System.out.println("Desplegando entregas por localizacionr.....");
+				System.out.println("\t"+system.obtenerEntregasPorLocalizacion());
+				break;
+			case("C"):
+				System.out.println("Desplegando entregas por Clientes.....");
+				System.out.println("\t"+system.obtenerEntregasPorCliente());
+				break;
+			case("D"):
+				System.out.println("Registros de ganancias......");
+				System.out.println("Las ganancias por cada oficina de Starkon fueron....");
+				System.out.println();
+				System.out.println(system.obtenerGananciasOficinas());
+				System.out.println("El balance total de la empresa fue: "+system.obtenerBalanceTotal());
+				break;
+			case("E"):
+				cierre = false;
+				break;
+			default:
+				System.out.println("Elija A ,B ,C ,D ,E  porfavor ");break;
+			}
+	    	if(opcion.equalsIgnoreCase("E")) {
+	    		break;
+	    	}
+		}
+		System.out.println("\tSALIENDO DEL MENU ADMIN");
 		
 	}
 
+	
 	private static void menuUsuario(SystemI system, String rut) {
 		boolean cierre = true;
 		System.out.println("Bienvenido Menu Usuario:");
@@ -271,14 +313,23 @@ public class App {
 		leerCiudades(system);
 		leerClientes(system);
 		leerEntregas(system);
-		String rut = "12345678";
-		menuUsuario(system, rut);
-		
-		System.out.println();
-		System.out.println(system.obtenerEntregasPorLocalizacion());
-		System.out.println();
-		System.out.println(system.obtenerGananciasOficinas());
-		//System.out.println(generarCodigo());
+		while(true) {
+			boolean usuario = inicioSesion(system);
+			if(usuario) {
+				System.out.println("Desea cerrar el sistema? (Si) o (No)");
+				String resp = leer.nextLine();
+				while(!resp.equalsIgnoreCase("Si") && !resp.equalsIgnoreCase("No")) {
+					System.out.println("Desea cerrar el sistema? (Si) o (No)");
+					resp = leer.nextLine();
+				}
+				if(resp.equalsIgnoreCase("Si")) {
+					break;
+				}
+				
+			}
+		}
+		//sobreesvribir
+
 	}
 	
 	public static Scanner leer = new Scanner(System.in);
