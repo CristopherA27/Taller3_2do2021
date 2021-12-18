@@ -306,7 +306,7 @@ public class SystemImpl implements SystemI{
 	
 	
 	
-	public void añadirSaldo(String rut,int dinero) {
+	public void recargarSaldo(String rut,int dinero) {
 		for(int i=0;i<lclientes.size();i++) {
 			Cliente c = lclientes.get(i);
 			if(c.getRut().equals(rut)) {
@@ -427,6 +427,34 @@ public class SystemImpl implements SystemI{
 		}
 		dato+="\tEl balance total de todas las oficinas fue "+sumador;
 		return dato;
+	}
+	
+	public String obtenerEntregas() {
+		String rocklee= "";
+		for(int i=0;i<lentregas.size();i++) {
+			Entrega e = lentregas.getElemento(i);
+			if(e instanceof Documento) {
+				Documento d = (Documento)e;
+				rocklee+="\tDocumento: Codigo:"+d.getCodigoEntrega()+",RutRemitente:"+d.getRutRemitente()+",RutDestinatario"+d.getRutDestinatario()+",Peso:"+d.getPeso()+",Grosor:"+d.getGrosor()+"\n";
+			}else if(e instanceof Encomienda) {
+				Encomienda en = (Encomienda)e;
+				rocklee+="\tEncomienda: Codigo:"+en.getCodigoEntrega()+",RutRemitente:"+en.getRutRemitente()+",RutDestinatario"+en.getRutDestinatario()+",Peso:"+en.getPeso()+",Largo:"+en.getLargo()+",Ancho:"+en.getAncho()+",Profundidad:"+en.getProfundidad()+"\n";
+			}else if(e instanceof Valija) {
+				Valija v = (Valija)e;
+				rocklee+="\tValija:  Codigo:"+v.getCodigoEntrega()+",RutRemitente:"+v.getRutRemitente()+",RutDestinatario"+v.getRutDestinatario()+",Material:"+v.getMaterial()+",Peso:"+v.getPeso()+"\n";
+			}
+		}
+		
+		return rocklee;
+	}
+	public String obtenerClientes() {
+		String covid ="";
+		for(int i=0;i<lclientes.size();i++) {
+			Cliente c = lclientes.get(i);
+			covid+=c.getRut()+","+c.getNombre()+","+c.getApellido()+","+c.getSaldo()+","+c.getCiudadOrigen()+"\n";
+		}
+		
+		return covid;
 	}
 	
 	

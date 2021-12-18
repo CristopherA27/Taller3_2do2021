@@ -2,7 +2,10 @@ package logica;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
+import ucn.*;
 
 
 
@@ -280,7 +283,7 @@ public class App {
 				System.out.println();
 				System.out.print("Ingrese el dinero que desea agregar a su saldo");
 				int dinero = leer.nextInt();
-				system.añadirSaldo(rut, dinero);
+				system.recargarSaldo(rut, dinero);
 				break;
 			case("C"):
 				System.out.println("OBTENIENDO ENTREGAS");
@@ -307,8 +310,9 @@ public class App {
 		return dato;
 	}
 	
+	
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		SystemI system = new SystemImpl();
 		leerCiudades(system);
 		leerClientes(system);
@@ -328,9 +332,25 @@ public class App {
 				
 			}
 		}
-		//sobreesvribir
-
+		sobreescribir(system);
+		System.out.println("Archivos Sobreescritos con exito.........");
 	}
+	
+	public static void sobreescribir(SystemI system) throws IOException {
+		ArchivoSalida arch = new ArchivoSalida("Clientes.txt");
+		Registro registroSalida = new Registro(1);
+		registroSalida.agregarCampo(system.obtenerClientes());
+		arch.writeRegistro(registroSalida);
+		arch.close();
+		
+		ArchivoSalida arch1 = new ArchivoSalida("Entregas.txt");
+		Registro registroSalida1 = new Registro(1);
+		registroSalida1.agregarCampo(system.obtenerEntregas());
+		arch1.writeRegistro(registroSalida1);
+		arch1.close();
+	}
+	
+	
 	
 	public static Scanner leer = new Scanner(System.in);
 

@@ -15,7 +15,7 @@ public interface SystemI {
 	
 	public boolean verificarSaldo(String rut,int montopagar);
 	
-	public void añadirSaldo(String rut,int dinero);
+	public void recargarSaldo(String rut,int dinero);
 	public String obtenerEntregas(String rut);
 	
 	public String obtenerEntregasPorTipo();
@@ -28,6 +28,10 @@ public interface SystemI {
 	public String obtenerGananciasOficinas();
 	public String obtenerBalanceTotal();
 	
+	//Sobreescribir
+	
+	public String obtenerEntregas();
+	public String obtenerClientes();
 	
 	
 }
