@@ -11,6 +11,12 @@ import ucn.*;
 
 public class App {
 	
+	/**
+	 * procedure that reads the cities text file
+	 * @param system
+	 * @throws IOException
+	 */
+	
 	public static void leerCiudades(SystemI system) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("Ciudades.txt"));
 		while(s.hasNextLine()) {
@@ -21,6 +27,12 @@ public class App {
 		}
 		s.close();
 	}
+	
+	/**procedure that reads the clients text file
+	 * 
+	 * @param system
+	 * @throws IOException
+	 */
 	
 	public static void leerClientes(SystemI system)throws FileNotFoundException {
 		Scanner s = new Scanner(new File("Clientes.txt"));
@@ -36,6 +48,11 @@ public class App {
 		}
 		s.close();
 	}
+	/**
+	 * procedure that reads the deliveries text file
+	 * @param system
+	 * @throws IOException
+	 */
 	
 	public static void leerEntregas(SystemI system)throws FileNotFoundException{
 		Scanner s = new Scanner(new File("Entregas.txt"));
@@ -75,6 +92,13 @@ public class App {
 		}
 		s.close();
 	}
+	
+	/**
+	 * procedure used to login
+	 * @param system
+	 * return true if the password is "choripan123" or if the password belongs to an account
+	 * else return false
+	 */
 	
 	public static boolean inicioSesion(SystemI system) {
 		System.out.println("BIENVENIDO A STARKON");
@@ -123,7 +147,11 @@ public class App {
 
 	}
 	
-
+	/**
+	 * This procedure shows all the options available for the Admin when you log in
+	 * @param system
+	 */
+	
 	private static void menuAdmin(SystemI system) {
 		boolean cierre = true;
 		System.out.println("Bienvenido al Menu ADMIN");
@@ -170,6 +198,11 @@ public class App {
 		
 	}
 
+	/**
+	 * This procedure shows all the options available for the client when you log in
+	 * @param system
+	 * @param rut
+	 */
 	
 	private static void menuUsuario(SystemI system, String rut) {
 		boolean cierre = true;
@@ -302,6 +335,11 @@ public class App {
 		System.out.println("\tSALIENDO DEL MENU USUARIO");
 	}
 	
+	/**
+	 * create a random code
+	 * return dato
+	 */
+	
 	public static String generarCodigo() {
 		String dato ="";
 		int codigo =0;
@@ -310,7 +348,11 @@ public class App {
 		return dato;
 	}
 	
-	
+	/**
+	 * main function
+	 * @param args
+	 * @throws IOException
+	 */
 
 	public static void main(String[] args) throws IOException {
 		SystemI system = new SystemImpl();

@@ -17,18 +17,41 @@ public class SystemImpl implements SystemI{
 		lciudades =	new ArrayList<Ciudad>();
 		lentregas= new ListaDobleNexoCircular();
 	}
-
+	
+	/**
+	 * The client is entered into the general list of clients.
+	 * @param rut 	
+	 * @param nombre
+	 * @param apellido
+	 * @param saldo
+	 * @param ciudadOrigen
+	 */
+	
 	public void ingresarCliente(String rut, String nombre, String apellido, int saldo, String ciudadOrigen) {
 		Cliente cliente = new Cliente(rut, nombre, apellido, saldo, ciudadOrigen);
 		lclientes.add(cliente); 
 	}
-
+	
+	/**
+	 * The city is entered into the general list of cities
+	 * @param nombre
+	 */
+	
 	@Override
 	public void ingresarCiudad(String nombre) {
 		Ciudad ciudad = new Ciudad(nombre);
 		lciudades.add(ciudad);
 	}
 
+	/**
+	 * The document entered is associated with the 2 corresponding clients and the document is entered into the general list of deliveries.
+	 * @param codigoEntrega
+	 * @param rutRemitente
+	 * @param rutDestinatario
+	 * @param peso
+	 * @param grosor
+	 */
+	
 	@Override
 	public void ingresarAsociarDocumento(String codigoEntrega, String rutRemitente, String rutDestinatario, int peso,int grosor) {
 		Entrega e = new Documento(codigoEntrega, rutRemitente, rutDestinatario, peso, grosor);
@@ -65,6 +88,18 @@ public class SystemImpl implements SystemI{
 			}
 		}
 	}
+	
+	/**
+	 * The order entered is associated with the 2 corresponding clients and the order is entered into the general list of deliveries
+	 * @param codigoEntrega
+	 * @param rutRemitente
+	 * @param rutDestinatario
+	 * @param peso
+	 * @param largo
+	 * @param ancho
+	 * @param profundidad
+	 */
+	
 	@Override
 	public void ingresarAsociarEncomienda(String codigoEntrega, String rutRemitente, String rutDestinatario,int peso, int largo, int ancho, int profundidad) {
 		Entrega e = new Encomienda(codigoEntrega, rutRemitente, rutDestinatario, peso, largo, ancho, profundidad);
@@ -100,6 +135,16 @@ public class SystemImpl implements SystemI{
 			}
 		}
 	}
+	
+	/**
+	 * The bag entered is associated with the 2 corresponding customers and the bag is entered into the general list of deliveries.
+	 * @param codigoEntrega
+	 * @param rutRemitente
+	 * @param rutDestinatario
+	 * @param material
+	 * @param peso
+	 */
+	
 	@Override
 	public void ingresarAsociarValija(String codigoEntrega, String rutRemitente, String rutDestinatario,String material, int peso) {
 		Entrega e = new Valija(codigoEntrega, rutRemitente, rutDestinatario, material, peso);
@@ -135,6 +180,19 @@ public class SystemImpl implements SystemI{
 			}
 		}
 	}
+	
+	/**
+	 * The types of parameters of the entered delivery were verified.
+	 * @param tipo
+	 * @param peso
+	 * @param material
+	 * @param grosor
+	 * @param largo
+	 * @param ancho
+	 * @param profundidad
+	 * return boolean
+	 */
+	
 	@Override
 	public boolean verificarParametro(String tipo, int peso, String material, int grosor, int largo, int ancho,int profundidad) {
 		switch (tipo) {
@@ -159,7 +217,13 @@ public class SystemImpl implements SystemI{
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Check if the rut exists in the general customer list
+	 * @param rut
+	 * return boolean
+	 */
+	
 	@Override
 	public boolean verificarRut(String rut) {
 		for(int i=0;i<lclientes.size();i++) {
@@ -171,6 +235,12 @@ public class SystemImpl implements SystemI{
 		return false;
 	}
 	
+	/**
+	 * It is checked if the city exists in the general city list
+	 * @param ciudadOrigen
+	 * return boolean
+	 */
+	
 	public boolean verificarCiudad(String ciudadOrigen) {
 		for(int i=0;i<lciudades.size();i++) {
 			Ciudad c = lciudades.get(i);
@@ -180,6 +250,12 @@ public class SystemImpl implements SystemI{
 		}
 		return false;
 	}
+	
+	/**
+	 * 	It is verified if the client with the entered routine has enough balance to carry out the operation, if so, it will be discounted.
+	 * @param montopagar
+	 * return boolean
+	 */
 	
 	public boolean verificarSaldo(String rut,int montopagar) {
 		for(int i=0;i<lclientes.size();i++) {
@@ -202,6 +278,18 @@ public class SystemImpl implements SystemI{
 		return false;
 	}
 	
+	/**
+	 * The price of the delivery is obtained.
+	 * @param tipo
+	 * @param peso
+	 * @param material
+	 * @param grosor
+	 * @param largo
+	 * @param ancho
+	 * @param profundidad
+	 * return precio
+	 */
+	
 	public int obtenerPrecio(String tipo,int peso, String material, int grosor, int largo, int ancho,int profundidad) {
 		switch (tipo) {
 		case("D"):
@@ -221,6 +309,20 @@ public class SystemImpl implements SystemI{
 		}
 		return 0;
 	}
+	
+	/**
+	 * It is verified if the entered ruts exist and if so, a delivery is created.
+	 * @param codigoEntrega
+	 * @param tipo
+	 * @param rutRemitente
+	 * @param rutDestinatario
+	 * @param peso
+	 * @param material
+	 * @param grosor
+	 * @param largo
+	 * @param ancho
+	 * @param profundidad
+	 */
 	
 	public void realizarEntrega(String codigoEntrega,String tipo,String rutRemitente,String rutDestinatario,int peso, String material, int grosor, int largo, int ancho,int profundidad) {
 		switch (tipo) {
@@ -304,7 +406,11 @@ public class SystemImpl implements SystemI{
 		}
 	}
 	
-	
+	/**
+	 * Money is recharged to the balance of the entered rut.
+	 * @param rut
+	 * @param dinero
+	 */
 	
 	public void recargarSaldo(String rut,int dinero) {
 		for(int i=0;i<lclientes.size();i++) {
@@ -315,6 +421,12 @@ public class SystemImpl implements SystemI{
 			}
 		}
 	}
+	
+	/**
+	 * The data of the deliveries that the client received and sent are obtained.
+	 * @param rut
+	 * return dato
+	 */
 	
 	public String obtenerEntregas(String rut) {
 		String dato = "";
@@ -356,6 +468,11 @@ public class SystemImpl implements SystemI{
 		return dato;
 	}
 	
+	/**
+	 * You get the total deliveries according to their type.
+	 * return dato
+	 */
+	
 	public String obtenerEntregasPorTipo() {
 		String dato ="";
 		for(int i=0;i<lentregas.size();i++) {
@@ -375,7 +492,11 @@ public class SystemImpl implements SystemI{
 		return dato;
 	}
 
-	@Override
+	/**
+	 *You get the number of received and sent by city. 
+	 *return dato
+	 */
+	
 	public String obtenerEntregasPorLocalizacion() {
 		String dato ="";
 		for(int i=0;i<lciudades.size();i++) {
@@ -385,6 +506,10 @@ public class SystemImpl implements SystemI{
 		return dato;
 	}
 	
+	/**
+	 * You get the deliveries made by customer.
+	 * return dato
+	 */
 	
 	public String obtenerEntregasPorCliente() {
 		String dato ="";
@@ -409,6 +534,11 @@ public class SystemImpl implements SystemI{
 		return dato;
 	}
 	
+	/**
+	 * The profit is obtained from each office.
+	 * return dato
+	 */
+	
 	public String obtenerGananciasOficinas(){
 		String dato = "";
 		for(int i=0;i<lciudades.size();i++) {
@@ -417,6 +547,11 @@ public class SystemImpl implements SystemI{
 		}
 		return dato;
 	}
+	
+	/**
+	 * The sum of the balances of each office is obtained.
+	 * return dato
+	 */
 	
 	public String obtenerBalanceTotal() {
 		int sumador = 0;
@@ -428,6 +563,11 @@ public class SystemImpl implements SystemI{
 		dato+="\tEl balance total de todas las oficinas fue "+sumador;
 		return dato;
 	}
+	
+	/**
+	 * You get all the deliveries of the system.
+	 * return rocklee
+	 */
 	
 	public String obtenerEntregas() {
 		String rocklee= "";
@@ -447,6 +587,12 @@ public class SystemImpl implements SystemI{
 		
 		return rocklee;
 	}
+	
+	/**
+	 * All clients of the system are obtained.
+	 * return covid
+	 */
+	
 	public String obtenerClientes() {
 		String covid ="";
 		for(int i=0;i<lclientes.size();i++) {
