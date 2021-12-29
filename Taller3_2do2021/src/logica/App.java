@@ -88,7 +88,7 @@ public class App {
 			default:
 				throw new IllegalArgumentException("No existe el tipo ingresado "+tipo);
 			}
-			//System.out.println(line);
+			//ystem.out.println(line);
 		}
 		s.close();
 	}
@@ -384,6 +384,7 @@ public class App {
 		registroSalida.agregarCampo(system.obtenerClientes());
 		arch.writeRegistro(registroSalida);
 		arch.close();
+		
 		
 		ArchivoSalida arch1 = new ArchivoSalida("Entregas.txt");
 		Registro registroSalida1 = new Registro(1);

@@ -1,4 +1,3 @@
 123456789,Pablo,Rios,100000,Ovalle
 12345678,Cristobal,Rios,50000,Coquimbo
-123456,Tomas,Quiroga,30000,Santiago
-
+123456,Tomas,Quiroga,29441,Santiago

@@ -575,16 +575,15 @@ public class SystemImpl implements SystemI{
 			Entrega e = lentregas.getElemento(i);
 			if(e instanceof Documento) {
 				Documento d = (Documento)e;
-				rocklee+="\tDocumento: Codigo:"+d.getCodigoEntrega()+",RutRemitente:"+d.getRutRemitente()+",RutDestinatario"+d.getRutDestinatario()+",Peso:"+d.getPeso()+",Grosor:"+d.getGrosor()+"\n";
+				rocklee+=d.getCodigoEntrega()+",D,"+d.getRutRemitente()+","+d.getRutDestinatario()+","+d.getPeso()+","+d.getGrosor()+"\n";
 			}else if(e instanceof Encomienda) {
 				Encomienda en = (Encomienda)e;
-				rocklee+="\tEncomienda: Codigo:"+en.getCodigoEntrega()+",RutRemitente:"+en.getRutRemitente()+",RutDestinatario"+en.getRutDestinatario()+",Peso:"+en.getPeso()+",Largo:"+en.getLargo()+",Ancho:"+en.getAncho()+",Profundidad:"+en.getProfundidad()+"\n";
+				rocklee+="\n"+en.getCodigoEntrega()+",E,"+en.getRutRemitente()+","+en.getRutDestinatario()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"\n";
 			}else if(e instanceof Valija) {
 				Valija v = (Valija)e;
-				rocklee+="\tValija:  Codigo:"+v.getCodigoEntrega()+",RutRemitente:"+v.getRutRemitente()+",RutDestinatario"+v.getRutDestinatario()+",Material:"+v.getMaterial()+",Peso:"+v.getPeso()+"\n";
+				rocklee+="\n"+v.getCodigoEntrega()+",V,"+v.getRutRemitente()+","+v.getRutDestinatario()+","+v.getMaterial()+","+v.getPeso()+"\n";
 			}
 		}
-		
 		return rocklee;
 	}
 	
