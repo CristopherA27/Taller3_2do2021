@@ -190,7 +190,7 @@ public class SystemImpl implements SystemI{
 	 * @param largo
 	 * @param ancho
 	 * @param profundidad
-	 * return boolean
+	 * @return boolean
 	 */
 	
 	@Override
@@ -221,7 +221,7 @@ public class SystemImpl implements SystemI{
 	/**
 	 * Check if the rut exists in the general customer list
 	 * @param rut
-	 * return boolean
+	 * @return boolean
 	 */
 	
 	@Override
@@ -238,7 +238,7 @@ public class SystemImpl implements SystemI{
 	/**
 	 * It is checked if the city exists in the general city list
 	 * @param ciudadOrigen
-	 * return boolean
+	 * @return boolean
 	 */
 	
 	public boolean verificarCiudad(String ciudadOrigen) {
@@ -254,7 +254,7 @@ public class SystemImpl implements SystemI{
 	/**
 	 * 	It is verified if the client with the entered routine has enough balance to carry out the operation, if so, it will be discounted.
 	 * @param montopagar
-	 * return boolean
+	 * @return boolean
 	 */
 	
 	public boolean verificarSaldo(String rut,int montopagar) {
@@ -287,7 +287,7 @@ public class SystemImpl implements SystemI{
 	 * @param largo
 	 * @param ancho
 	 * @param profundidad
-	 * return precio
+	 * @return precio
 	 */
 	
 	public int obtenerPrecio(String tipo,int peso, String material, int grosor, int largo, int ancho,int profundidad) {
@@ -425,7 +425,7 @@ public class SystemImpl implements SystemI{
 	/**
 	 * The data of the deliveries that the client received and sent are obtained.
 	 * @param rut
-	 * return dato
+	 * @return dato
 	 */
 	
 	public String obtenerEntregas(String rut) {
@@ -470,7 +470,7 @@ public class SystemImpl implements SystemI{
 	
 	/**
 	 * You get the total deliveries according to their type.
-	 * return dato
+	 * @return dato
 	 */
 	
 	public String obtenerEntregasPorTipo() {
@@ -494,7 +494,7 @@ public class SystemImpl implements SystemI{
 
 	/**
 	 *You get the number of received and sent by city. 
-	 *return dato
+	 *@return dato
 	 */
 	
 	public String obtenerEntregasPorLocalizacion() {
@@ -508,7 +508,7 @@ public class SystemImpl implements SystemI{
 	
 	/**
 	 * You get the deliveries made by customer.
-	 * return dato
+	 * @return dato
 	 */
 	
 	public String obtenerEntregasPorCliente() {
@@ -536,7 +536,7 @@ public class SystemImpl implements SystemI{
 	
 	/**
 	 * The profit is obtained from each office.
-	 * return dato
+	 * @return dato
 	 */
 	
 	public String obtenerGananciasOficinas(){
