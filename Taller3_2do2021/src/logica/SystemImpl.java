@@ -578,10 +578,10 @@ public class SystemImpl implements SystemI{
 				rocklee+=d.getCodigoEntrega()+",D,"+d.getRutRemitente()+","+d.getRutDestinatario()+","+d.getPeso()+","+d.getGrosor()+"\n";
 			}else if(e instanceof Encomienda) {
 				Encomienda en = (Encomienda)e;
-				rocklee+="\n"+en.getCodigoEntrega()+",E,"+en.getRutRemitente()+","+en.getRutDestinatario()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"\n";
+				rocklee+=en.getCodigoEntrega()+",E,"+en.getRutRemitente()+","+en.getRutDestinatario()+","+en.getPeso()+","+en.getLargo()+","+en.getAncho()+","+en.getProfundidad()+"\n";
 			}else if(e instanceof Valija) {
 				Valija v = (Valija)e;
-				rocklee+="\n"+v.getCodigoEntrega()+",V,"+v.getRutRemitente()+","+v.getRutDestinatario()+","+v.getMaterial()+","+v.getPeso()+"\n";
+				rocklee+=v.getCodigoEntrega()+",V,"+v.getRutRemitente()+","+v.getRutDestinatario()+","+v.getMaterial()+","+v.getPeso()+"\n";
 			}
 		}
 		return rocklee;
@@ -598,7 +598,6 @@ public class SystemImpl implements SystemI{
 			Cliente c = lclientes.get(i);
 			covid+=c.getRut()+","+c.getNombre()+","+c.getApellido()+","+c.getSaldo()+","+c.getCiudadOrigen()+"\n";
 		}
-		
 		return covid;
 	}
 	

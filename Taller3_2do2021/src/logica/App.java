@@ -37,14 +37,18 @@ public class App {
 	public static void leerClientes(SystemI system)throws FileNotFoundException {
 		Scanner s = new Scanner(new File("Clientes.txt"));
 		while(s.hasNextLine()) {
-			String line = s.nextLine();
-			String [] partes = line.split(",");
-			String rut = partes[0];
-			String nombre = partes[1];
-			String apellido = partes[2];
-			int saldo = Integer.parseInt(partes[3]);
-			String ciudadOrigen = partes[4];
-			system.ingresarCliente(rut, nombre, apellido, saldo, ciudadOrigen);
+			try {
+				String line = s.nextLine();
+				String [] partes = line.split(",");
+				String rut = partes[0];
+				String nombre = partes[1];
+				String apellido = partes[2];
+				int saldo = Integer.parseInt(partes[3]);
+				String ciudadOrigen = partes[4];
+				system.ingresarCliente(rut, nombre, apellido, saldo, ciudadOrigen);
+			}catch (Exception e) {
+				System.out.print("");
+			}
 		}
 		s.close();
 	}
@@ -57,42 +61,44 @@ public class App {
 	public static void leerEntregas(SystemI system)throws FileNotFoundException{
 		Scanner s = new Scanner(new File("Entregas.txt"));
 		while(s.hasNextLine()) {
-			String line = s.nextLine();
-			String [] partes = line.split(",");
-			String codigoEntrega = partes[0];
-			String tipo = partes[1];
-			switch (tipo) {
-			case("D"): 
-				String rutRemmitente = partes[2];
-				String rutDestinatario = partes[3];
-				int peso = Integer.parseInt(partes[4]);
-				int grosor = Integer.parseInt(partes[5]);
-				system.ingresarAsociarDocumento(codigoEntrega, rutRemmitente, rutDestinatario, peso, grosor);
-				break;
-			case("V"):
-				rutRemmitente = partes[2];
-				rutDestinatario = partes[3];
-				String material  = partes[4];
-				peso = Integer.parseInt(partes[5]);
-				system.ingresarAsociarValija(codigoEntrega, rutRemmitente, rutDestinatario, material, peso);
-				break;
-			case("E"):
-				rutRemmitente = partes[2];
-				rutDestinatario = partes[3];
-				peso = Integer.parseInt(partes[4]);
-			    int largo = Integer.parseInt(partes[5]);
-			    int ancho = Integer.parseInt(partes[6]);
-			    int profundidad = Integer.parseInt(partes[7]);
-			    system.ingresarAsociarEncomienda(codigoEntrega, rutRemmitente, rutDestinatario, peso, largo, ancho, profundidad);
-				break;
-			default:
-				throw new IllegalArgumentException("No existe el tipo ingresado "+tipo);
+			try {
+				String line = s.nextLine();
+				String [] partes = line.split(",");
+				String codigoEntrega = partes[0];
+				String tipo = partes[1];
+				switch (tipo) {
+				case("D"): 
+					String rutRemmitente = partes[2];
+					String rutDestinatario = partes[3];
+					int peso = Integer.parseInt(partes[4]);
+					int grosor = Integer.parseInt(partes[5]);
+					system.ingresarAsociarDocumento(codigoEntrega, rutRemmitente, rutDestinatario, peso, grosor);
+					break;
+				case("V"):
+					rutRemmitente = partes[2];
+					rutDestinatario = partes[3];
+					String material  = partes[4];
+					peso = Integer.parseInt(partes[5]);
+					system.ingresarAsociarValija(codigoEntrega, rutRemmitente, rutDestinatario, material, peso);
+					break;
+				case("E"):
+					rutRemmitente = partes[2];
+					rutDestinatario = partes[3];
+					peso = Integer.parseInt(partes[4]);
+				    int largo = Integer.parseInt(partes[5]);
+				    int ancho = Integer.parseInt(partes[6]);
+				    int profundidad = Integer.parseInt(partes[7]);
+				    system.ingresarAsociarEncomienda(codigoEntrega, rutRemmitente, rutDestinatario, peso, largo, ancho, profundidad);
+					break;
+				default:
+					throw new IllegalArgumentException("No existe el tipo ingresado "+tipo);
+				}
+			}catch (Exception e) {
+				System.out.print("");
 			}
-			//ystem.out.println(line);
 		}
 		s.close();
 	}
-	
 	/**
 	 * procedure used to login
 	 * @param system
@@ -369,6 +375,7 @@ public class App {
 					resp = leer.nextLine();
 				}
 				if(resp.equalsIgnoreCase("Si")) {
+					
 					break;
 				}
 				
